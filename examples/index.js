@@ -1,8 +1,8 @@
-const col = require('colors');
-var msg = require('./messageHolder');
+import col from 'colors';
+import { message, message2, doSomething } from './messageHolder';
 
 console.log('A message'.red);
 
-console.log(msg.message.red);
-console.log(msg.message2.bold);
-console.log(msg.doSomething().blue);
+console.log(message.red);
+console.log(message2.bold);
+console.log(doSomething().blue);
