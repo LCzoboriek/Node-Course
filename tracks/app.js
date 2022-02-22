@@ -1,29 +1,32 @@
 const fs = require('fs');
-const tracks = require('./tracks.js');
 const yargs = require('yargs');
 const _ = require('lodash');
-
+const tracks = require('./tracks');
 const argv = yargs.argv;
-let command = argv._[0];
+//console.log(argv);
+//var command = process.argv[2];
+var command = argv._[0];
 
-switch (command) {
-  case 'add':
-    tracks.addTrack(argv.title, argv.artist, argv.album);
-    break;
-  case 'list':
-    let allTracks = tracks.listTracks();
-    console.log(`Displaying ${allTracks.length} tracks:\n`);
+if (command === 'add') {
+    tracks.addTrack(argv.artist, argv.title, argv.album);
+} else if (command === 'list') {
+    var allTracks = tracks.listTracks();
+    console.log('Displaying all tracks');
     allTracks.forEach((track) => {
-      tracks.displayTrack(track);
-    });
-    break;
-  case 'get':
-    let track = tracks.getTrack(argv.title);
-    tracks.displayTrack(track);
-    break;
-  case 'remove':
+        console.log(`${track.title} by ${track.artist} from ${track.album}`);
+    } )
+} else if (command === 'get') {
+    var track = tracks.getTrack(argv.title);
+    if (track) {
+        console.log(`Title: ${track.title}`);
+        console.log(`Artist: ${track.artist}`);
+        console.log(`Album: ${track.album}`);      
+    } else {
+        console.log('Track not found');
+    }
+} else if (command === 'remove') {
     tracks.removeTrack(argv.title);
-    break;
-  default:
-    console.log('Invalid command');
+    console.log(`Removed track ${argv.title}`);
+} else {
+    console.log('Command not found');
 }
