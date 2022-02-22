@@ -23,7 +23,7 @@ const argv = yargs
                 alias: 'album',
                 string: true
             }
-
+// So this way you can make options a little more simpler, and even remove the need for the equals sign on the get command, adding descriptions will also help your users
         })
 .help()
 .alias('help','h')
