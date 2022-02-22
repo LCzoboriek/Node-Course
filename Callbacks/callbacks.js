@@ -1,4 +1,4 @@
-var getUser = function(id, callback){
+1{
     var user = {id: id, 
             name: 'Paul'
         }

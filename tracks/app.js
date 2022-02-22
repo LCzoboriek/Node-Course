@@ -2,10 +2,35 @@ const fs = require('fs');
 const yargs = require('yargs');
 const _ = require('lodash');
 const tracks = require('./tracks');
-const argv = yargs.argv;
+const argv = yargs
+        .options({
+            c: {
+                demand: true,
+                alias: 'command',
+                describe: 'enter list, add, get or remove',
+                string: true
+            },
+            t: {
+                alias: 'title',
+                string: true
+            },
+            a: {
+                alias: 'artist',
+                string: true
+            },
+            al:
+            {
+                alias: 'album',
+                string: true
+            }
+
+        })
+.help()
+.alias('help','h')
+.argv;
 //console.log(argv);
 //var command = process.argv[2];
-var command = argv._[0];
+var command = argv.command;
 
 if (command === 'add') {
     tracks.addTrack(argv.artist, argv.title, argv.album);
